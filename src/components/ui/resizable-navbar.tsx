@@ -237,12 +237,7 @@ export const NavbarLogo = () => {
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <Image
-        src="/images/logo/digrowfa.webp"
-        alt="logo"
-        width={140}
-        height={50}
-      />
+      <Image src="/images/logo/astro.png" alt="logo" width={50} height={50} />
     </Link>
   );
 };

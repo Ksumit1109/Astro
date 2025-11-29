@@ -8,7 +8,7 @@ import { api } from "@/services/api";
 export function PanchangForm() {
   const [place, setPlace] = useState("Delhi");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
