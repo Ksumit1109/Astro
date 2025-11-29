@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { api, RashifalRequest } from "@/services/api";
+import { ResponseDisplay } from "./ResponseDisplay";
 
 const rashis = [
   "Aries",
@@ -26,7 +27,7 @@ export function RashifalForm() {
     date: new Date().toISOString().split("T")[0],
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<unknown>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -50,52 +51,47 @@ export function RashifalForm() {
   };
 
   return (
-    <div className="p-6 bg-background rounded-xl border border-border/50 shadow-sm max-w-md mx-auto">
-      <h3 className="text-xl font-semibold mb-4">Daily Rashifal</h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">Select Rashi</label>
-          <select
-            name="rashi"
-            value={formData.rashi}
-            onChange={handleChange}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            required
-          >
-            <option value="" disabled>
-              Select your sign
-            </option>
-            {rashis.map((r) => (
-              <option key={r} value={r}>
-                {r}
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="p-6 bg-background rounded-xl border border-border/50 shadow-sm">
+        <h3 className="text-xl font-semibold mb-4">Daily Rashifal</h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Select Rashi
+            </label>
+            <select
+              name="rashi"
+              value={formData.rashi}
+              onChange={handleChange}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              required
+            >
+              <option value="" disabled>
+                Select your sign
               </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Date</label>
-          <Input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Fetching..." : "Get Horoscope"}
-        </Button>
-      </form>
-      {result && (
-        <div className="mt-4 p-4 bg-secondary/20 rounded-lg">
-          <p className="text-sm font-medium text-green-600">
-            Horoscope Fetched!
-          </p>
-          <pre className="text-xs mt-2 overflow-auto max-h-40">
-            {JSON.stringify(result, null, 2)}
-          </pre>
-        </div>
-      )}
+              {rashis.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Date</label>
+            <Input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <Button type="submit" className="w-full" disabled={loading}>
+            {loading ? "Fetching..." : "Get Horoscope"}
+          </Button>
+        </form>
+      </div>
+      {result ? <ResponseDisplay data={result} /> : null}
     </div>
   );
 }
