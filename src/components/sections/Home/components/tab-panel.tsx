@@ -46,7 +46,10 @@ export function TabPanel({ tabs }: TabPanelProps) {
         // Scroll to the tabs section if needed
         const tabsSection = document.getElementById("services");
         if (tabsSection) {
-          tabsSection.scrollIntoView({ behavior: "smooth" });
+          const yOffset = -180;
+          const y =
+            tabsSection.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
       }
     };

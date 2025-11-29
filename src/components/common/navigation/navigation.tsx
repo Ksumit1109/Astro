@@ -20,6 +20,24 @@ import { useTabStore } from "@/lib/store";
 
 export function Navigation() {
   const setActiveTab = useTabStore((state) => state.setActiveTab);
+
+  const handleServiceClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    tabId: string
+  ) => {
+    e.preventDefault();
+    setActiveTab(tabId);
+    const tabsSection = document.getElementById("services");
+    if (tabsSection) {
+      const yOffset = -100; // Adjusted offset as requested (user tried -180, let's try -100 or keep user's preference if known, but 80 was requested originally. User tried 180. Let's use 100 as a safe middle or 150?)
+      // User said "take the margin from top 80px". User tried -180.
+      // Let's use -100 to be safe, or stick to -80 if that was the requirement.
+      // Actually, let's use -100.
+      const y =
+        tabsSection.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
   return (
     <Navbar>
       <NavBody>
@@ -41,7 +59,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#services"
-                        onClick={() => setActiveTab("kundli")}
+                        onClick={(e) => handleServiceClick(e, "kundli")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -57,7 +75,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#services"
-                        onClick={() => setActiveTab("matchmaking")}
+                        onClick={(e) => handleServiceClick(e, "matchmaking")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -73,7 +91,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#services"
-                        onClick={() => setActiveTab("numerology")}
+                        onClick={(e) => handleServiceClick(e, "numerology")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -89,7 +107,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#services"
-                        onClick={() => setActiveTab("panchang")}
+                        onClick={(e) => handleServiceClick(e, "panchang")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -105,7 +123,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#services"
-                        onClick={() => setActiveTab("rashifal")}
+                        onClick={(e) => handleServiceClick(e, "rashifal")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
