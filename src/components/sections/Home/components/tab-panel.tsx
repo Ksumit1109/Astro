@@ -18,8 +18,12 @@ interface TabPanelProps {
   defaultTab?: string;
 }
 
-export function TabPanel({ tabs, defaultTab }: TabPanelProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab || tabs[0]?.id);
+import { useTabStore } from "@/lib/store";
+// ... imports
+
+export function TabPanel({ tabs }: TabPanelProps) {
+  const activeTab = useTabStore((state) => state.activeTab);
+  const setActiveTab = useTabStore((state) => state.setActiveTab);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
@@ -32,6 +36,28 @@ export function TabPanel({ tabs, defaultTab }: TabPanelProps) {
       });
     }
   }, [activeTab]);
+
+  // Handle hash navigation - Sync store with hash on mount/change
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && tabs.some((tab) => tab.id === hash)) {
+        setActiveTab(hash);
+        // Scroll to the tabs section if needed
+        const tabsSection = document.getElementById("services");
+        if (tabsSection) {
+          tabsSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [tabs, setActiveTab]);
 
   const activeContent = tabs.find((tab) => tab.id === activeTab)?.content;
 

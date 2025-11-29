@@ -16,8 +16,10 @@ import {
 } from "@/components/ui/resizable-navbar";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useTabStore } from "@/lib/store";
 
 export function Navigation() {
+  const setActiveTab = useTabStore((state) => state.setActiveTab);
   return (
     <Navbar>
       <NavBody>
@@ -38,7 +40,8 @@ export function Navigation() {
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="#kundli"
+                        href="#services"
+                        onClick={() => setActiveTab("kundli")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -53,7 +56,8 @@ export function Navigation() {
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="#matchmaking"
+                        href="#services"
+                        onClick={() => setActiveTab("matchmaking")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -68,7 +72,8 @@ export function Navigation() {
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="#numerology"
+                        href="#services"
+                        onClick={() => setActiveTab("numerology")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -83,7 +88,8 @@ export function Navigation() {
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="#panchang"
+                        href="#services"
+                        onClick={() => setActiveTab("panchang")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -98,7 +104,8 @@ export function Navigation() {
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="#rashifal"
+                        href="#services"
+                        onClick={() => setActiveTab("rashifal")}
                         className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
@@ -116,13 +123,13 @@ export function Navigation() {
 
             <NavigationMenuItem>
               <NavigationMenuLink hoverIndex={2} asChild>
-                <Link href="/#">Docs</Link>
+                <Link href="/#features">Why us</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink hoverIndex={3} asChild>
-                <Link href="/#">Pricing</Link>
+                <Link href="/#pricing">Pricing</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
