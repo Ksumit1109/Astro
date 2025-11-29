@@ -4,6 +4,7 @@ import type React from "react";
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useTabStore } from "@/lib/store";
 
 interface Tab {
   id: string;
@@ -18,7 +19,6 @@ interface TabPanelProps {
   defaultTab?: string;
 }
 
-import { useTabStore } from "@/lib/store";
 // ... imports
 
 export function TabPanel({ tabs }: TabPanelProps) {
