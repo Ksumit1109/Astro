@@ -14,8 +14,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Digrowfa",
-  description: "The all-in-one platform for modern web development.",
+  title: "Astrology",
+  description: "Astrology Prediction and Analysis for your life",
 };
 
 export default function RootLayout({
@@ -25,13 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body
-        className={`${manrope.variable} ${inter.variable} antialiased`}
-      >
-        <ClientAppProvider>
-          {children}
-        </ClientAppProvider>
-
+      <body className={`${manrope.variable} ${inter.variable} antialiased`}>
+        <ClientAppProvider>{children}</ClientAppProvider>
       </body>
     </html>
   );
