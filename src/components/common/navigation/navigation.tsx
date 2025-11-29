@@ -116,7 +116,7 @@ export function Navigation() {
 
             <NavigationMenuItem>
               <NavigationMenuLink hoverIndex={2} asChild>
-                <Link href="/docs">Docs</Link>
+                <Link href="/#">Docs</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
