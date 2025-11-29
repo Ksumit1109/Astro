@@ -32,7 +32,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl max-w-2xl font-semibold tracking-tight text-foreground leading-[1.1]"
+            className="text-3xl md:text-5xl max-w-2xl font-semibold tracking-tight text-foreground leading-[1.1]"
           >
             Unlock Your Destiny with Vedic Astrology
           </motion.h1>

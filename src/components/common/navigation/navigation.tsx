@@ -13,13 +13,19 @@ import {
   NavBody,
   NavbarLogo,
   NavbarButton,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useTabStore } from "@/lib/store";
 
 export function Navigation() {
   const setActiveTab = useTabStore((state) => state.setActiveTab);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleServiceClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -158,6 +164,103 @@ export function Navigation() {
           <NavbarButton variant="primary">Book a call</NavbarButton>
         </div>
       </NavBody>
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
+            isOpen={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          />
+        </MobileNavHeader>
+        <MobileNavMenu
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+        >
+          <Link
+            href="/"
+            className="block px-4 py-2 text-lg font-medium"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <div className="px-4 py-2">
+            <p className="text-sm font-semibold text-muted-foreground mb-2">
+              Services
+            </p>
+            <div className="grid gap-2 pl-2">
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "kundli");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Kundli
+              </Link>
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "matchmaking");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Match Making
+              </Link>
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "numerology");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Numerology
+              </Link>
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "panchang");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Panchang
+              </Link>
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "rashifal");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Rashifal
+              </Link>
+            </div>
+          </div>
+          <Link
+            href="/#features"
+            className="block px-4 py-2 text-lg font-medium"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Why us
+          </Link>
+          <Link
+            href="/#pricing"
+            className="block px-4 py-2 text-lg font-medium"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Pricing
+          </Link>
+          <div className="px-4 pt-4 mt-auto w-full">
+            <NavbarButton variant="primary" className="w-full justify-center">
+              Book a call
+            </NavbarButton>
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
     </Navbar>
   );
 }
