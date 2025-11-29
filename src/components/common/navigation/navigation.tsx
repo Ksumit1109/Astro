@@ -25,43 +25,21 @@ export function Navigation() {
         <NavigationMenu>
           <NavigationMenuList className="flex-wrap">
             <NavigationMenuItem>
-              <NavigationMenuTrigger hoverIndex={0}>Home</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <div className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6">
-                      <div className="mb-2 text-lg font-medium sm:mt-4">
-                        shadcn/ui
-                      </div>
-                      <p className="text-muted-foreground text-sm leading-tight">
-                        Beautifully designed components built with Tailwind CSS.
-                      </p>
-                    </div>
-                  </li>
-                  <Link href="/docs" title="Introduction">
-                    Re-usable components built using Radix UI and Tailwind CSS.
-                  </Link>
-                  <Link href="/docs/installation" title="Installation">
-                    How to install dependencies and structure your app.
-                  </Link>
-                  <Link href="/docs/primitives/typography" title="Typography">
-                    Styles for headings, paragraphs, lists...etc
-                  </Link>
-                </ul>
-              </NavigationMenuContent>
+              <NavigationMenuLink hoverIndex={0} asChild>
+                <Link href="/">Home</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
-
             <NavigationMenuItem>
               <NavigationMenuTrigger hoverIndex={1}>
                 Services
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 w-[400px] p-4">
+              <NavigationMenuContent className="bg-lightground">
+                <ul className="grid gap-2 w-[300px] p-1">
                   <li>
                     <NavigationMenuLink asChild>
                       <Link
                         href="#kundli"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
                           Kundli
@@ -76,7 +54,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#matchmaking"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
                           Match Making
@@ -91,7 +69,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#numerology"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
                           Numerology
@@ -106,7 +84,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#panchang"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
                           Panchang
@@ -121,7 +99,7 @@ export function Navigation() {
                     <NavigationMenuLink asChild>
                       <Link
                         href="#rashifal"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
                       >
                         <div className="text-sm font-medium leading-none">
                           Rashifal
