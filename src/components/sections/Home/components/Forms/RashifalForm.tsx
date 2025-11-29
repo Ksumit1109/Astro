@@ -26,7 +26,7 @@ export function RashifalForm() {
     date: new Date().toISOString().split("T")[0],
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -39,7 +39,7 @@ export function RashifalForm() {
     setLoading(true);
     try {
       const data = await api.getRashifal(formData);
-      setResult(data as Record<string, unknown>);
+      setResult(data);
       console.log("Rashifal Result:", data);
     } catch (error) {
       console.error(error);

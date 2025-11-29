@@ -17,7 +17,7 @@ export function MatchMakingForm() {
     girl_place: "",
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +28,7 @@ export function MatchMakingForm() {
     setLoading(true);
     try {
       const data = await api.matchMaking(formData);
-      setResult(data as Record<string, unknown>);
+      setResult(data);
       console.log("Match Result:", data);
     } catch (error) {
       console.error(error);

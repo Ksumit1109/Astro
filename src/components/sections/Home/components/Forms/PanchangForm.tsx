@@ -8,14 +8,14 @@ import { api } from "@/services/api";
 export function PanchangForm() {
   const [place, setPlace] = useState("Delhi");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       const data = await api.getPanchang(place);
-      setResult(data as Record<string, unknown>);
+      setResult(data);
       console.log("Panchang Result:", data);
     } catch (error) {
       console.error(error);

@@ -11,7 +11,7 @@ export function NumerologyForm() {
     birth_date: "",
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +22,7 @@ export function NumerologyForm() {
     setLoading(true);
     try {
       const data = await api.numerology(formData);
-      setResult(data as Record<string, unknown>);
+      setResult(data);
       console.log("Numerology Result:", data);
     } catch (error) {
       console.error(error);

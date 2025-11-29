@@ -13,7 +13,7 @@ export function KundliForm() {
     birth_place: "",
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,7 +24,7 @@ export function KundliForm() {
     setLoading(true);
     try {
       const data = await api.createKundli(formData);
-      setResult(data as Record<string, unknown>);
+      setResult(data);
       alert("Kundli generated successfully! (Check console for data)");
       console.log("Kundli Data:", data);
     } catch (error) {
