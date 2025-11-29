@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { api, KundliRequest } from "@/services/api";
+import { api, KundliRequest, KundliResponse } from "@/services/api";
 
 export function KundliForm() {
   const [formData, setFormData] = useState<KundliRequest>({
@@ -13,7 +13,7 @@ export function KundliForm() {
     birth_place: "",
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
+  const [result, setResult] = useState<KundliResponse | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
