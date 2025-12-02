@@ -19,8 +19,6 @@ interface TabPanelProps {
   defaultTab?: string;
 }
 
-// ... imports
-
 export function TabPanel({ tabs }: TabPanelProps) {
   const activeTab = useTabStore((state) => state.activeTab);
   const setActiveTab = useTabStore((state) => state.setActiveTab);
