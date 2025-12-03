@@ -1,6 +1,7 @@
 "use client";
 
 import { AstroReading, AstroSign } from "@/lib/astro-data";
+import ReactMarkdown from "react-markdown";
 
 interface CardReadingProps {
   reading: AstroReading;
@@ -40,9 +41,11 @@ export default function CardReading({
         >
           Daily Forecast
         </p>
-        <p className={`${textClass} text-xs sm:text-sm leading-relaxed`}>
-          {reading.dailyForecast}
-        </p>
+        <div
+          className={`${textClass} text-xs sm:text-sm leading-relaxed prose prose-sm dark:prose-invert max-w-none`}
+        >
+          <ReactMarkdown>{reading.dailyForecast}</ReactMarkdown>
+        </div>
       </div>
 
       {/* Grid of Details */}
@@ -103,9 +106,11 @@ export default function CardReading({
         >
           Cosmic Advice
         </p>
-        <p className={`${textClass} text-xs sm:text-sm italic`}>
-          &quot;{reading.advice}&quot;
-        </p>
+        <div
+          className={`${textClass} text-xs sm:text-sm italic prose prose-sm dark:prose-invert max-w-none`}
+        >
+          <ReactMarkdown>{`"${reading.advice}"`}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );
