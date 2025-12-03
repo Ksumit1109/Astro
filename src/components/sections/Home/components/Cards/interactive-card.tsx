@@ -87,7 +87,6 @@ export default function InteractiveCard({
         className="cursor-pointer perspective"
         onClick={handleCardClick}
         style={{
-          perspective: "1000px",
           height: isFlipped ? "auto" : "auto",
         }}
       >
@@ -118,14 +117,8 @@ export default function InteractiveCard({
                         animation: "spin 2s linear infinite",
                       }}
                     />
-                    <div
-                      className="absolute inset-2 rounded-full border-2 border-transparent border-b-primary/50 animate-spin"
-                      style={{
-                        animation: "spin 3s linear infinite reverse",
-                      }}
-                    />
                   </div>
-                  <p className="text-primary text-sm font-semibold animate-pulse">
+                  <p className="md:block hidden text-primary text-sm font-semibold animate-pulse">
                     Reading Your Destiny...
                   </p>
                 </div>
