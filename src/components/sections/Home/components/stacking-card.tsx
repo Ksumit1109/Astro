@@ -9,6 +9,7 @@ interface ProjectData {
   title: string;
   description: string;
   link: string;
+  image: string;
 }
 
 interface CardProps {
@@ -16,6 +17,7 @@ interface CardProps {
   title: string;
   description: string;
   url: string;
+  image: string;
   progress: MotionValue<number>;
   range: [number, number];
   targetScale: number;
@@ -26,6 +28,7 @@ export const Card = ({
   title,
   description,
   url,
+  image,
   progress,
   range,
   targetScale,
@@ -80,8 +83,8 @@ export const Card = ({
               style={{ scale: imageScale }}
             >
               <Image
-                src={url}
-                alt="image"
+                src={image}
+                alt={title}
                 fill
                 className="object-cover h-full w-full"
               />
@@ -132,6 +135,7 @@ const Component = forwardRef<HTMLElement, ComponentRootProps>(
                   key={`p_${i}`}
                   i={i}
                   url={project.link}
+                  image={project.image}
                   title={project.title}
                   description={project.description}
                   progress={scrollYProgress}

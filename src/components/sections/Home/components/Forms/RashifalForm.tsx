@@ -1,97 +1,85 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { api, RashifalRequest } from "@/services/api";
-import { ResponseDisplay } from "./ResponseDisplay";
+import { astroData, AstroSign, AstroReading } from "@/lib/astro-data";
+import InteractiveCard from "../Cards/interactive-card";
 
-const rashis = [
-  "Aries",
-  "Taurus",
-  "Gemini",
-  "Cancer",
-  "Leo",
-  "Virgo",
-  "Libra",
-  "Scorpio",
-  "Sagittarius",
-  "Capricorn",
-  "Aquarius",
-  "Pisces",
-];
+// Mapping from astro-data English names to API rashi names
+const signToRashiMap: Record<string, string> = {
+  "Mesh (Aries)": "Aries",
+  "Vrishabh (Taurus)": "Taurus",
+  "Mithun (Gemini)": "Gemini",
+  "Kark (Cancer)": "Cancer",
+  "Singh (Leo)": "Leo",
+  "Kanya (Virgo)": "Virgo",
+  "Tula (Libra)": "Libra",
+  "Vrishchik (Scorpio)": "Scorpio",
+  "Dhanu (Sagittarius)": "Sagittarius",
+  "Makar (Capricorn)": "Capricorn",
+  "Kumbh (Aquarius)": "Aquarius",
+  "Meen (Pisces)": "Pisces",
+};
 
 export function RashifalForm() {
-  const [formData, setFormData] = useState<RashifalRequest>({
-    rashi: "",
-    date: new Date().toISOString().split("T")[0],
-  });
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<unknown>(null);
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
+    {}
+  );
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleCardClick = async (
+    sign: AstroSign
+  ): Promise<AstroReading | null> => {
+    const rashiName = signToRashiMap[sign.english];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    setLoadingStates((prev) => ({ ...prev, [sign.english]: true }));
+
     try {
+      const formData: RashifalRequest = {
+        rashi: rashiName,
+        date: new Date().toISOString().split("T")[0],
+      };
+
       const data = await api.getRashifal(formData);
-      setResult(data);
       console.log("Rashifal Result:", data);
+
+      // Transform API response to AstroReading format
+      // Adjust this based on your actual API response structure
+      const reading: AstroReading = {
+        dailyForecast: typeof data === "string" ? data : JSON.stringify(data),
+        luckyNumber: Math.floor(Math.random() * 99) + 1,
+        luckyColor: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"][
+          Math.floor(Math.random() * 6)
+        ],
+        compatibility: rashiName,
+        mood: "Blessed",
+        advice: "Trust the cosmic energies today.",
+      };
+
+      return reading;
     } catch (error) {
       console.error(error);
       alert("Failed to get rashifal");
+      return null;
     } finally {
-      setLoading(false);
+      setLoadingStates((prev) => ({ ...prev, [sign.english]: false }));
     }
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="p-6 bg-background rounded-xl border border-border/50 shadow-sm">
-        <h3 className="text-xl font-semibold mb-4">Daily Rashifal</h3>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Select Rashi
-            </label>
-            <select
-              name="rashi"
-              value={formData.rashi}
-              onChange={handleChange}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              required
-            >
-              <option value="" disabled>
-                Select your sign
-              </option>
-              {rashis.map((r) => (
-                <option key={r} value={r}>
-                  {r}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Date</label>
-            <Input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
+    <div className="w-full mx-auto px-4">
+      {/* Grid: 6 columns on xl, 4 on lg, 3 on md, 2 on sm */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+        {astroData.map((sign, index) => (
+          <div key={index} className="flex justify-center">
+            <InteractiveCard
+              sign={sign}
+              theme="dark"
+              onCardClick={handleCardClick}
+              isLoadingExternal={loadingStates[sign.english] || false}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Fetching..." : "Get Horoscope"}
-          </Button>
-        </form>
+        ))}
       </div>
-      {result ? <ResponseDisplay data={result} /> : null}
     </div>
   );
 }

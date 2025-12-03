@@ -19,6 +19,8 @@ export function ResponseDisplay({ data, className }: ResponseDisplayProps) {
     const possibleFields = [
       "rashifal", // Rashifal response
       "kundli", // Kundli response
+      "match_report", // Match Making response
+      "numerology_report", // Numerology response
       "report", // Generic report
       "result", // Generic result
       "prediction", // Prediction
@@ -27,6 +29,7 @@ export function ResponseDisplay({ data, className }: ResponseDisplayProps) {
       "text", // Text field
       "content", // Content field
       "data", // Data field
+      "विवरण", // Panchang details
     ];
 
     // Check each possible field
@@ -43,7 +46,11 @@ export function ResponseDisplay({ data, className }: ResponseDisplayProps) {
         if (typeof fieldValue === "object" && fieldValue !== null) {
           const nestedObj = fieldValue as Record<string, unknown>;
           const nestedContent =
-            nestedObj.markdown || nestedObj.text || nestedObj.content;
+            nestedObj.markdown ||
+            nestedObj.text ||
+            nestedObj.content ||
+            nestedObj.व्याख्या || // Kundli explanation
+            nestedObj.विवरण; // Panchang details
           if (nestedContent && typeof nestedContent === "string") {
             return { type: "markdown" as const, content: nestedContent };
           }

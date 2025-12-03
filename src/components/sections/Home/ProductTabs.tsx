@@ -2,6 +2,11 @@
 
 import { motion } from "framer-motion";
 import { TabPanel } from "./components/tab-panel";
+import { RashifalForm } from "./components/Forms/RashifalForm";
+import { KundliForm } from "./components/Forms/KundliForm";
+import { MatchMakingForm } from "./components/Forms/MatchMakingForm";
+import { NumerologyForm } from "./components/Forms/NumerologyForm";
+import { PanchangForm } from "./components/Forms/PanchangForm";
 
 const Icons = {
   Dashboard: () => (
@@ -55,13 +60,14 @@ const Icons = {
   ),
 };
 
-import { KundliForm } from "./components/Forms/KundliForm";
-import { MatchMakingForm } from "./components/Forms/MatchMakingForm";
-import { NumerologyForm } from "./components/Forms/NumerologyForm";
-import { PanchangForm } from "./components/Forms/PanchangForm";
-import { RashifalForm } from "./components/Forms/RashifalForm";
-
 const tabsData = [
+  {
+    id: "rashifal",
+    icon: <Icons.Assets />,
+    title: "Rashifal",
+    subtitle: "Daily Horoscope Predictions",
+    content: <RashifalForm />,
+  },
   {
     id: "kundli",
     icon: <Icons.Dashboard />,
@@ -90,18 +96,10 @@ const tabsData = [
     subtitle: "Daily Astrological Calendar",
     content: <PanchangForm />,
   },
-  {
-    id: "rashifal",
-    icon: <Icons.Assets />,
-    title: "Rashifal",
-    subtitle: "Daily Horoscope Predictions",
-    content: <RashifalForm />,
-  },
 ];
 
 export default function ProductTabs() {
-  const tabs = tabsData; // Direct usage since content is already ReactNode
-
+  const tabs = tabsData;
   return (
     <motion.main
       id="services"
@@ -111,7 +109,7 @@ export default function ProductTabs() {
       className=" bg-background"
     >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <TabPanel tabs={tabs} defaultTab="kundli" />
+        <TabPanel tabs={tabs} defaultTab="rashifal" />
       </div>
     </motion.main>
   );

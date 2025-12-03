@@ -18,7 +18,7 @@ export default function MainPage() {
       <GridEffect />
       <Hero />
       <ProductTabs />
-      <WhatWeDo />
+      {/* <WhatWeDo /> */}
       <Features />
       <Showcase />
       <Testimonials />
