@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import ClientAppProvider from "@/components/client/ClientAppProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
+        <SpeedInsights />
         <ClientAppProvider>{children}</ClientAppProvider>
       </body>
     </html>
