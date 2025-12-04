@@ -2,17 +2,20 @@
 
 import { AstroReading, AstroSign } from "@/lib/astro-data";
 import ReactMarkdown from "react-markdown";
+import { Maximize2 } from "lucide-react";
 
 interface CardReadingProps {
   reading: AstroReading;
   sign: AstroSign;
   theme: "dark" | "light";
+  onMaximize?: () => void;
 }
 
 export default function CardReading({
   reading,
   sign,
   theme,
+  onMaximize,
 }: CardReadingProps) {
   // Using global variables for background and text
   const bgClass = "bg-card border-border";
@@ -21,8 +24,22 @@ export default function CardReading({
 
   return (
     <div
-      className={`rounded-xl border p-4 sm:p-6 shadow-lg space-y-3 sm:space-y-4 ${bgClass}`}
+      className={`rounded-xl border p-4 sm:p-6 shadow-lg space-y-3 sm:space-y-4 ${bgClass} relative`}
     >
+      {/* Maximize Icon */}
+      {onMaximize && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onMaximize();
+          }}
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-200 z-10"
+          aria-label="Maximize card"
+        >
+          <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+        </button>
+      )}
+
       {/* Header */}
       <div className="border-b border-primary/20 pb-3 sm:pb-4">
         <h3

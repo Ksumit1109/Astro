@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardReading from "./card-reading";
 import AstroCard from "./Astrocard";
 import { AstroReading, AstroSign } from "@/lib/astro-data";
+import { Minimize2 } from "lucide-react";
 
 interface InteractiveCardProps {
   sign: AstroSign;
@@ -21,6 +22,27 @@ export default function InteractiveCard({
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [reading, setReading] = useState<AstroReading | null>(null);
+  const [isMaximized, setIsMaximized] = useState(false);
+
+  const handleMaximize = () => {
+    setIsMaximized(true);
+  };
+
+  const handleMinimize = () => {
+    setIsMaximized(false);
+  };
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isMaximized) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMaximized]);
 
   const handleCardClick = async () => {
     if (isFlipped) {
@@ -107,7 +129,12 @@ export default function InteractiveCard({
           >
             {reading ? (
               <div className="h-full w-full overflow-y-auto bg-card rounded-2xl">
-                <CardReading reading={reading} sign={sign} theme={theme} />
+                <CardReading
+                  reading={reading}
+                  sign={sign}
+                  theme={theme}
+                  onMaximize={handleMaximize}
+                />
               </div>
             ) : (
               <div className="h-full w-full flex items-center justify-center bg-card rounded-2xl border border-border">
@@ -117,6 +144,31 @@ export default function InteractiveCard({
           </div>
         </div>
       </div>
+
+      {/* Maximized Modal */}
+      {isMaximized && reading && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={handleMinimize}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card rounded-2xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Minimize Button */}
+            <button
+              onClick={handleMinimize}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-200 z-10"
+              aria-label="Minimize card"
+            >
+              <Minimize2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            </button>
+
+            {/* Card Content without maximize button */}
+            <CardReading reading={reading} sign={sign} theme={theme} />
+          </div>
+        </div>
+      )}
 
       {/* Click Hint */}
       {!isFlipped && !isLoading && (
