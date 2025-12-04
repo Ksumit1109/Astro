@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { api, KundliRequest, KundliResponse } from "@/services/api";
 import { ResponseDisplay } from "./ResponseDisplay";
+import { KundliRequest, KundliResponse } from "@/types/types";
+import { api } from "@/services/api";
 
 export function KundliForm() {
   const [formData, setFormData] = useState<KundliRequest>({

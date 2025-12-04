@@ -7,7 +7,7 @@ import { RashifalForm } from "./components/Forms/RashifalForm";
 import { KundliForm } from "./components/Forms/KundliForm";
 import { MatchMakingForm } from "./components/Forms/MatchMakingForm";
 import { NumerologyForm } from "./components/Forms/NumerologyForm";
-import { PanchangForm } from "./components/Forms/PanchangForm";
+import CalendarPage from "./components/Calendar/calendar-page";
 
 const tabsData = [
   {
@@ -39,11 +39,11 @@ const tabsData = [
     content: <NumerologyForm />,
   },
   {
-    id: "panchang",
+    id: "calendar",
     icon: <Calendar size={20} />,
-    title: "Panchang",
-    subtitle: "Daily Astrological Calendar",
-    content: <PanchangForm />,
+    title: "Desi Calendar",
+    subtitle: "Hindu Calendar & Festivals",
+    content: <CalendarPage />,
   },
 ];
 
@@ -57,7 +57,7 @@ export default function ProductTabs() {
       transition={{ duration: 0.5, delay: 0.3 }}
       className=" bg-background"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 relative z-10 ">
         <TabPanel tabs={tabs} defaultTab="rashifal" />
       </div>
     </motion.main>

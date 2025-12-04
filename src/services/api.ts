@@ -1,45 +1,13 @@
-const API_BASE_URL = "https://jyotish-dusky.vercel.app";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export interface User {
-  id: string;
-  name: string;
-  gender: string;
-  email: string;
-  birthYear: number;
-}
-
-export interface KundliRequest {
-  name: string;
-  birth_date: string; // YYYY-MM-DD
-  birth_time: string; // HH:MM
-  birth_place: string;
-}
-
-export interface KundliResponse {
-  id: string;
-  kundli: Record<string, unknown>; // JSON object
-}
-
-export interface RashifalRequest {
-  rashi: string;
-  date: string; // YYYY-MM-DD
-}
-
-export interface MatchMakingRequest {
-  boy_name: string;
-  boy_dob: string;
-  boy_time: string;
-  boy_place: string;
-  girl_name: string;
-  girl_dob: string;
-  girl_time: string;
-  girl_place: string;
-}
-
-export interface NumerologyRequest {
-  name: string;
-  birth_date: string;
-}
+import { KundliRequest, User } from "@/types/types";
+import { DailyPanchang } from "@/types/types";
+import { Festival } from "@/types/types";
+import { CalendarData } from "@/types/types";
+import { KundliResponse } from "@/types/types";
+import { RashifalRequest } from "@/types/types";
+import { MatchMakingRequest } from "@/types/types";
+import { NumerologyRequest } from "@/types/types";
 
 export const api = {
   getUsers: async (): Promise<User[]> => {
@@ -93,4 +61,74 @@ export const api = {
     if (!response.ok) throw new Error("Failed to fetch numerology report");
     return response.json();
   },
+};
+
+// Fetch calendar for specific month
+export const fetchMonthlyCalendar = async (
+  year: number,
+  month: number
+): Promise<CalendarData> => {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/desi-calendar/${year}/${month}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch calendar");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching monthly calendar:", error);
+    throw error;
+  }
+};
+
+// Fetch today's panchang
+export const fetchTodayPanchang = async (): Promise<DailyPanchang> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/desi-calendar/today`);
+    if (!response.ok) throw new Error("Failed to fetch today's panchang");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching today's panchang:", error);
+    throw error;
+  }
+};
+
+// Fetch specific day panchang
+export const fetchDayPanchang = async (
+  date: string
+): Promise<DailyPanchang> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/desi-calendar/day/${date}`);
+    if (!response.ok) throw new Error("Failed to fetch day panchang");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching day panchang:", error);
+    throw error;
+  }
+};
+
+// Fetch all festivals for a year
+export const fetchYearlyFestivals = async (
+  year: number
+): Promise<Festival[]> => {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/desi-calendar/festivals/${year}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch yearly festivals");
+    const data = await response.json();
+    return data.festivals || [];
+  } catch (error) {
+    console.error("Error fetching yearly festivals:", error);
+    throw error;
+  }
+};
+
+// Format date for display
+export const formatDateForDisplay = (dateStr: string): string => {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("hi-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 };

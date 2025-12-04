@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { api, RashifalRequest } from "@/services/api";
+import { api } from "@/services/api";
 import { astroData, AstroSign, AstroReading } from "@/lib/astro-data";
 import InteractiveCard from "../Cards/interactive-card";
+import { RashifalRequest } from "@/types/types";
 
 // Mapping from astro-data English names to API rashi names (transliterated Hindi)
 const signToRashiMap: Record<string, string> = {

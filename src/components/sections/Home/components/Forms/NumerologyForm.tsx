@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { api, NumerologyRequest } from "@/services/api";
+import { api } from "@/services/api";
 import { ResponseDisplay } from "./ResponseDisplay";
+import { NumerologyRequest } from "@/types/types";
 
 export function NumerologyForm() {
   const [formData, setFormData] = useState<NumerologyRequest>({

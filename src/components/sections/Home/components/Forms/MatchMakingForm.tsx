@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { api, MatchMakingRequest } from "@/services/api";
+import { api } from "@/services/api";
 import { ResponseDisplay } from "./ResponseDisplay";
+import { MatchMakingRequest } from "@/types/types";
 
 export function MatchMakingForm() {
   const [formData, setFormData] = useState<MatchMakingRequest>({

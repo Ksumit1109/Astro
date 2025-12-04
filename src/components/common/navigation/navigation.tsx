@@ -141,6 +141,22 @@ export function Navigation() {
                       </Link>
                     </NavigationMenuLink>
                   </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="#services"
+                        onClick={(e) => handleServiceClick(e, "calendar")}
+                        className="block select-none space-y-1 rounded-md  leading-none no-underline outline-none transition-colors hover:bg-hoverground focus:bg-hoverground focus:text-muted-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">
+                          Desi Calendar
+                        </div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Hindu Calendar & Festivals
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -237,6 +253,16 @@ export function Navigation() {
                 className="block py-1 text-base"
               >
                 Rashifal
+              </Link>
+              <Link
+                href="#services"
+                onClick={(e) => {
+                  handleServiceClick(e, "calendar");
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-1 text-base"
+              >
+                Desi Calendar
               </Link>
             </div>
           </div>
