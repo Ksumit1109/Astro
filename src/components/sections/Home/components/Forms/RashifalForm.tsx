@@ -43,25 +43,23 @@ export function RashifalForm() {
       console.log("Rashifal Result:", data);
 
       // Transform API response to AstroReading format
-      // Adjust this based on your actual API response structure
-      let forecastText = "";
-      if (typeof data === "string") {
-        forecastText = data;
-      } else if (data && typeof data === "object" && "rashifal" in data) {
-        forecastText = (data as { rashifal: string }).rashifal;
-      } else {
-        forecastText = JSON.stringify(data);
-      }
+      const apiResponse = data as {
+        rashifal: string;
+        luckyNumber: string;
+        luckyColor: string;
+        mood: string;
+        advice: string;
+        lovelife: string;
+        carrer: string;
+      };
 
       const reading: AstroReading = {
-        dailyForecast: forecastText,
-        luckyNumber: Math.floor(Math.random() * 99) + 1,
-        luckyColor: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"][
-          Math.floor(Math.random() * 6)
-        ],
-        compatibility: rashiName,
-        mood: "Blessed",
-        advice: "Trust the cosmic energies today.",
+        dailyForecast: apiResponse.rashifal,
+        luckyNumber: parseInt(apiResponse.luckyNumber) || 0,
+        luckyColor: apiResponse.luckyColor,
+        compatibility: apiResponse.lovelife,
+        mood: apiResponse.mood,
+        advice: apiResponse.advice,
       };
 
       return reading;
