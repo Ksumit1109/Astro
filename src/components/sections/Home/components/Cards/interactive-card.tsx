@@ -161,7 +161,7 @@ export default function InteractiveCard({
               className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-200 z-10"
               aria-label="Minimize card"
             >
-              <Minimize2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+              <Minimize2 className="w-3 h-3 md:w-4 md:h-4 " />
             </button>
 
             {/* Card Content without maximize button */}
