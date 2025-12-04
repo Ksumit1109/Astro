@@ -33,7 +33,7 @@ export default function CardReading({
             e.stopPropagation();
             onMaximize();
           }}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-200 z-10"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-lg bg-transparent border hover:bg-hoverground transition-colors duration-200 z-10"
           aria-label="Maximize card"
         >
           <Maximize2 className="w-3 h-3 md:w-4 md:h-4 " />
@@ -41,9 +41,9 @@ export default function CardReading({
       )}
 
       {/* Header */}
-      <div className="border-b border-primary/20 pb-3 sm:pb-4">
+      <div className="border-b  pb-3 sm:pb-4">
         <h3
-          className={`${textClass} font-bold text-base sm:text-lg mb-0.5 sm:mb-1`}
+          className={`${textClass} font-bold text-base md:text-lg mb-0.5 sm:mb-1`}
         >
           Your Daily Reading
         </h3>
@@ -68,7 +68,7 @@ export default function CardReading({
       {/* Grid of Details */}
       <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-4">
         {/* Lucky Number */}
-        <div className="bg-primary/5 rounded-lg p-2 sm:p-3 border border-primary/20 flex flex-col justify-center">
+        <div className="bg-transparent rounded-lg p-2 sm:p-3 border flex flex-col justify-center">
           <p
             className={`${mutedClass} text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1`}
           >
@@ -80,7 +80,7 @@ export default function CardReading({
         </div>
 
         {/* Lucky Color */}
-        <div className="bg-primary/5 rounded-lg p-2 sm:p-3 border border-primary/20 flex flex-col justify-center">
+        <div className="transparent rounded-lg p-2 sm:p-3 border  flex flex-col justify-center">
           <p
             className={`${mutedClass} text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1`}
           >
@@ -92,7 +92,7 @@ export default function CardReading({
         </div>
 
         {/* Compatibility */}
-        <div className="bg-primary/5 rounded-lg p-2 sm:p-3 border border-primary/20 flex flex-col justify-center">
+        <div className="transparent rounded-lg p-2 sm:p-3 border  flex flex-col justify-center">
           <p
             className={`${mutedClass} text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1`}
           >
@@ -104,7 +104,7 @@ export default function CardReading({
         </div>
 
         {/* Mood */}
-        <div className="bg-primary/5 rounded-lg p-2 sm:p-3 border border-primary/20 flex flex-col justify-center">
+        <div className="transparent rounded-lg p-2 sm:p-3 border  flex flex-col justify-center">
           <p
             className={`${mutedClass} text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1`}
           >
@@ -117,7 +117,7 @@ export default function CardReading({
       </div>
 
       {/* Advice Section */}
-      <div className="bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/20">
+      <div className="transparent rounded-lg p-3 sm:p-4 border ">
         <p
           className={`${mutedClass} text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-1 sm:mb-2`}
         >
