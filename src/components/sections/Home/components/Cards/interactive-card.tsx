@@ -38,42 +38,6 @@ export default function InteractiveCard({
     } else {
       // Simulate API call/calculation (fallback to mock)
       await new Promise((resolve) => setTimeout(resolve, 1800));
-
-      const mockReading: AstroReading = {
-        dailyForecast: `${
-          sign.english
-        } natives are blessed with ${sign.keywords[0].toLowerCase()} energy today. Focus on your goals and embrace the cosmic opportunities coming your way.`,
-        luckyNumber: Math.floor(Math.random() * 99) + 1,
-        luckyColor: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"][
-          Math.floor(Math.random() * 6)
-        ],
-        compatibility: [
-          "Aries",
-          "Taurus",
-          "Gemini",
-          "Cancer",
-          "Leo",
-          "Virgo",
-          "Libra",
-          "Scorpio",
-          "Sagittarius",
-          "Capricorn",
-          "Aquarius",
-          "Pisces",
-        ][Math.floor(Math.random() * 12)],
-        mood: [
-          "Confident",
-          "Creative",
-          "Peaceful",
-          "Energetic",
-          "Reflective",
-          "Inspired",
-        ][Math.floor(Math.random() * 6)],
-        advice:
-          "Trust your intuition and embrace the cosmic flow. Today brings new possibilities.",
-      };
-
-      setReading(mockReading);
     }
 
     setIsLoading(false);

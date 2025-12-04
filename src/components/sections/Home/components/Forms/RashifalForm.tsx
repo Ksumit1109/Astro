@@ -5,20 +5,20 @@ import { api, RashifalRequest } from "@/services/api";
 import { astroData, AstroSign, AstroReading } from "@/lib/astro-data";
 import InteractiveCard from "../Cards/interactive-card";
 
-// Mapping from astro-data English names to API rashi names
+// Mapping from astro-data English names to API rashi names (transliterated Hindi)
 const signToRashiMap: Record<string, string> = {
-  "Mesh (Aries)": "Aries",
-  "Vrishabh (Taurus)": "Taurus",
-  "Mithun (Gemini)": "Gemini",
-  "Kark (Cancer)": "Cancer",
-  "Singh (Leo)": "Leo",
-  "Kanya (Virgo)": "Virgo",
-  "Tula (Libra)": "Libra",
-  "Vrishchik (Scorpio)": "Scorpio",
-  "Dhanu (Sagittarius)": "Sagittarius",
-  "Makar (Capricorn)": "Capricorn",
-  "Kumbh (Aquarius)": "Aquarius",
-  "Meen (Pisces)": "Pisces",
+  "Mesh (Aries)": "Mesh",
+  "Vrishabh (Taurus)": "Vrishabh",
+  "Mithun (Gemini)": "Mithun",
+  "Kark (Cancer)": "Kark",
+  "Singh (Leo)": "Singh",
+  "Kanya (Virgo)": "Kanya",
+  "Tula (Libra)": "Tula",
+  "Vrishchik (Scorpio)": "Vrishchik",
+  "Dhanu (Sagittarius)": "Dhanu",
+  "Makar (Capricorn)": "Makar",
+  "Kumbh (Aquarius)": "Kumbh",
+  "Meen (Pisces)": "Meen",
 };
 
 export function RashifalForm() {

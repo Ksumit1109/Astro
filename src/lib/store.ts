@@ -6,6 +6,6 @@ interface TabState {
 }
 
 export const useTabStore = create<TabState>((set) => ({
-  activeTab: "kundli", // Default tab
+  activeTab: "rashifal", // Default tab
   setActiveTab: (tabId) => set({ activeTab: tabId }),
 }));
