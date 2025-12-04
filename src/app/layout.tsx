@@ -3,7 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import ClientAppProvider from "@/components/client/ClientAppProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { Analytics } from "@vercel/analytics/next";
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
         <SpeedInsights />
+        <Analytics />
         <ClientAppProvider>{children}</ClientAppProvider>
       </body>
     </html>
