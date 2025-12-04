@@ -231,7 +231,13 @@ export const MobileNavToggle = ({
   );
 };
 
-export const NavbarLogo = () => {
+export const NavbarLogo = ({
+  height,
+  width,
+}: {
+  height?: number;
+  width?: number;
+}) => {
   return (
     <Link
       href="/"
@@ -240,8 +246,8 @@ export const NavbarLogo = () => {
       <Image
         src="/images/logo/astrologo.png"
         alt="logo"
-        width={40}
-        height={40}
+        width={width || 40}
+        height={height || 40}
       />
     </Link>
   );
