@@ -34,25 +34,26 @@ export default function CalendarGrid({ data }: CalendarGridProps) {
   };
 
   return (
-    <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-lg">
-      {/* Weekday Headers */}
-      <div className="grid grid-cols-7 gap-0 bg-gradient-to-r from-primary to-chart-2">
+    <div className="bg-card rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-lg">
+      {/* Weekday Headers - Hidden on Mobile */}
+      <div className="hidden md:grid grid-cols-7 gap-0 bg-gradient-to-r from-primary to-chart-2">
         {weekDays.map((day) => (
           <div
             key={day}
-            className="p-4 text-center text-primary-foreground font-semibold text-sm"
+            className="p-2 md:p-4 text-center text-primary-foreground font-semibold text-xs md:text-sm"
           >
             {day}
           </div>
         ))}
       </div>
 
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-0">
+      {/* Calendar Grid/List */}
+      <div className="flex flex-col gap-3 md:grid md:grid-cols-7 md:gap-0">
+        {/* Empty slots - Hidden on Mobile */}
         {Array.from({ length: firstDay }).map((_, i) => (
           <div
             key={`empty-${i}`}
-            className="p-3 bg-secondary/30 min-h-36 border-r border-b border-border"
+            className="hidden md:block p-1.5 md:p-3 bg-secondary/30 min-h-20 md:min-h-36 border-r border-b border-border"
           />
         ))}
 
@@ -63,47 +64,98 @@ export default function CalendarGrid({ data }: CalendarGridProps) {
           return (
             <div
               key={day}
-              className={`p-3 min-h-36 border-r border-b border-border transition-all ${
-                panchang?.is_special
-                  ? "bg-primary/5 hover:bg-primary/10"
-                  : "bg-card hover:bg-secondary/50"
-              }`}
+              className={`group relative transition-all duration-200
+                /* Mobile Styles */
+                w-full bg-card rounded-xl border border-border/50 shadow-sm p-4 hover:shadow-md hover:border-primary/30
+                /* Desktop Styles */
+                md:w-auto md:bg-transparent md:rounded-none md:shadow-none md:p-3 md:min-h-36 md:border-r md:border-b md:border-border md:hover:bg-card/80 md:hover:shadow-lg md:hover:z-10 md:hover:scale-[1.02]
+                ${
+                  panchang?.is_special
+                    ? "md:bg-primary/5 md:hover:bg-primary/10"
+                    : ""
+                }
+              `}
             >
-              <div className="h-full flex flex-col gap-2">
-                <div className="flex items-start justify-between">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-chart-2 text-primary-foreground font-bold text-sm">
-                    {day}
-                  </span>
+              <div className="h-full flex flex-col gap-3 md:gap-2">
+                {/* Header: Date & Indicators */}
+                <div className="flex items-center justify-between md:items-start">
+                  <div className="flex items-center gap-3 md:block">
+                    <span className="inline-flex items-center justify-center w-10 h-10 md:w-8 md:h-8 rounded-xl md:rounded-lg bg-gradient-to-br from-primary to-chart-2 text-primary-foreground font-bold text-lg md:text-sm shadow-sm">
+                      {day}
+                    </span>
+                    {/* Mobile Only: Weekday Name */}
+                    <span className="md:hidden text-lg font-semibold text-foreground">
+                      {new Date(
+                        data.year,
+                        data.month - 1,
+                        day
+                      ).toLocaleDateString("hi-IN", { weekday: "long" })}
+                    </span>
+                  </div>
+
                   {panchang?.is_special && (
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-chart-4/20 text-chart-4 text-xs font-bold border border-chart-4/30">
-                      ✦
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 md:px-2 md:py-0.5 rounded-full bg-chart-4/10 text-chart-4 text-xs md:text-[10px] font-bold border border-chart-4/20 whitespace-nowrap">
+                      <span className="md:hidden">✨ शुभ दिन</span>
+                      <span className="hidden md:inline">✦</span>
                     </span>
                   )}
                 </div>
 
+                {/* Panchang Details */}
                 {panchang && (
-                  <div className="space-y-1.5 flex-1 text-xs">
+                  <div className="flex-1 w-full space-y-3 md:space-y-2 text-xs">
+                    {/* Tithi */}
                     <div
                       className={`${getTithiColor(
                         panchang.tithi
-                      )} rounded-md px-2 py-1 text-center font-bold border flex items-center justify-center gap-1`}
+                      )} rounded-lg md:rounded px-3 py-1.5 md:px-1.5 md:py-1 text-center font-medium border flex items-center justify-between md:justify-center gap-2 w-full`}
+                      title={panchang.tithi}
                     >
-                      <span>{getSymbolForTithi(panchang.tithi)}</span>
-                      <span className="truncate">{panchang.tithi}</span>
+                      <span className="text-sm md:text-xs font-bold">
+                        {getSymbolForTithi(panchang.tithi)}
+                      </span>
+                      <span className="truncate text-sm md:text-[10px] md:font-medium">
+                        {panchang.tithi}
+                      </span>
                     </div>
-                    <div className="text-foreground space-y-0.5">
-                      <p className="truncate flex items-center gap-1">
-                        <span className="text-muted-foreground text-xs">
-                          🌟
+
+                    {/* Details Grid (Mobile: 2 cols, Desktop: Stack) */}
+                    <div className="grid grid-cols-2 md:block gap-3 md:gap-1">
+                      {/* Nakshatra */}
+                      <div className="flex items-center gap-2 md:gap-1.5 bg-secondary/30 md:bg-transparent rounded-lg md:rounded-none p-2 md:p-0">
+                        <span className="text-base md:text-xs text-muted-foreground">
+                          {getSymbolForNakshatra(panchang.nakshatra)}
                         </span>
-                        <span className="text-muted-foreground">नक्षत्र:</span>
-                        <span>{getSymbolForNakshatra(panchang.nakshatra)}</span>
-                        <span className="truncate">{panchang.nakshatra}</span>
-                      </p>
-                      <p className="truncate text-muted-foreground text-xs">
-                        {panchang.paksha === "शुक्ल पक्ष" ? "🌕" : "🌑"}{" "}
-                        {panchang.paksha}
-                      </p>
+                        <div className="flex flex-col md:flex-row md:items-center md:gap-1 overflow-hidden">
+                          <span className="text-[10px] text-muted-foreground md:hidden">
+                            नक्षत्र
+                          </span>
+                          <span
+                            className="truncate font-medium md:font-normal text-sm md:text-[10px] text-muted-foreground"
+                            title={panchang.nakshatra}
+                          >
+                            {panchang.nakshatra}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Paksha */}
+                      <div className="flex items-center gap-2 md:gap-1.5 bg-secondary/30 md:bg-transparent rounded-lg md:rounded-none p-2 md:p-0">
+                        <span className="text-base md:text-xs text-muted-foreground">
+                          {panchang.paksha === "शुक्ल पक्ष" ? "🌕" : "🌑"}
+                        </span>
+                        <div className="flex flex-col md:flex-row md:items-center md:gap-1 overflow-hidden">
+                          <span className="text-[10px] text-muted-foreground md:hidden">
+                            पक्ष
+                          </span>
+                          <span
+                            className="truncate font-medium md:font-normal text-sm md:text-[10px] text-muted-foreground"
+                            title={panchang.paksha}
+                          >
+                            {panchang.paksha}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

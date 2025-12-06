@@ -62,38 +62,38 @@ export default function CalendarPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-xl shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-chart-2/10 border border-primary/30">
-                <Calendar className="w-6 h-6 text-primary" />
+      <div className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md shadow-sm">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-primary/10 border border-primary/20">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-foreground font-heading">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground font-heading">
                   🕉️ देसी कैलेंडर
                 </h1>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground hidden sm:block">
                   Hindu Calendar & Panchang
                 </p>
               </div>
             </div>
 
             {/* Month Navigation */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="icon"
                 onClick={handlePrevMonth}
-                className="border-border bg-secondary hover:bg-accent"
+                className="border-border bg-background hover:bg-secondary/50 h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0"
               >
                 <ChevronLeft className="w-4 h-4" />
               </Button>
-              <div className="px-6 py-2 text-center min-w-44 bg-gradient-to-r from-secondary to-muted rounded-lg border border-border">
-                <p className="font-semibold text-foreground">
+              <div className="px-3 sm:px-6 py-2 text-center flex-1 sm:min-w-44 bg-background rounded-lg border border-border shadow-sm">
+                <p className="font-semibold text-foreground text-sm sm:text-base">
                   {calendarData?.month_name} {currentYear}
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground truncate">
                   {calendarData?.hindu_month}
                 </p>
               </div>
@@ -101,7 +101,7 @@ export default function CalendarPage() {
                 variant="outline"
                 size="icon"
                 onClick={handleNextMonth}
-                className="border-border bg-secondary hover:bg-accent"
+                className="border-border bg-background hover:bg-secondary/50 h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0"
               >
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -109,20 +109,22 @@ export default function CalendarPage() {
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex gap-1 p-1 bg-secondary rounded-lg">
+          <div className="flex gap-1 p-1 bg-secondary/30 rounded-lg border border-border/50">
             {(["calendar", "festivals", "auspicious"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 px-4 py-2.5 font-medium text-sm rounded-md transition-all ${
+                className={`flex-1 px-2 sm:px-4 py-2 sm:py-2.5 font-medium text-xs sm:text-sm rounded-md transition-all touch-manipulation ${
                   activeTab === tab
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                 }`}
               >
-                {tab === "calendar" && "📅 कैलेंडर"}
-                {tab === "festivals" && "🎉 त्योहार"}
-                {tab === "auspicious" && "🕉️ मुहूर्त"}
+                <span className="">
+                  {tab === "calendar" && "📅 कैलेंडर"}
+                  {tab === "festivals" && "🎉 त्योहार"}
+                  {tab === "auspicious" && "🕉️ मुहूर्त"}
+                </span>
               </button>
             ))}
           </div>
@@ -130,9 +132,9 @@ export default function CalendarPage() {
       </div>
 
       {/* Content Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Today's Panchang Widget */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-8">
           <TodayPanchang />
         </div>
 

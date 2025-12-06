@@ -44,53 +44,65 @@ export default function TodayPanchang() {
   if (error || !panchang) return null;
 
   return (
-    <Card className="bg-gradient-to-br from-primary/10 to-secondary border-primary/20 overflow-hidden">
-      <CardHeader className="pb-3">
+    <Card className="bg-gradient-to-br from-primary/10 to-secondary border-primary/20 overflow-hidden py-4">
+      <CardHeader className="">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-primary" />
-            आज का पंचांग
+          <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            <span className="text-sm sm:text-base">आज का पंचांग</span>
           </CardTitle>
           {panchang.is_special && (
-            <span className="px-2 py-1 rounded-full bg-chart-4 text-foreground text-xs font-bold">
+            <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-chart-4 text-foreground text-[10px] sm:text-xs font-bold">
               ✦ शुभ दिन
             </span>
           )}
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">तारीख</p>
-            <p className="font-semibold text-sm text-foreground">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
+          <div className="space-y-0.5 sm:space-y-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">
+              तारीख
+            </p>
+            <p className="font-semibold text-xs sm:text-sm text-foreground truncate">
               {panchang.date}
             </p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <Star className="w-3 h-3" /> तिथि
+          <div className="space-y-0.5 sm:space-y-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-1">
+              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> तिथि
             </p>
-            <p className="font-semibold text-sm flex items-center gap-1">
-              <span>{getSymbolForTithi(panchang.tithi)}</span>
-              <span className="truncate">{panchang.tithi}</span>
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">नक्षत्र</p>
-            <p className="font-semibold text-sm flex items-center gap-1">
-              <span>{getSymbolForNakshatra(panchang.nakshatra)}</span>
-              <span className="truncate">{panchang.nakshatra}</span>
+            <p className="font-semibold text-xs sm:text-sm flex items-center gap-1">
+              <span className="text-sm sm:text-base">
+                {getSymbolForTithi(panchang.tithi)}
+              </span>
+              <span className="truncate text-[10px] sm:text-xs">
+                {panchang.tithi}
+              </span>
             </p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">पक्ष</p>
-            <p className="font-semibold text-sm text-foreground">
+          <div className="space-y-0.5 sm:space-y-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">
+              नक्षत्र
+            </p>
+            <p className="font-semibold text-xs sm:text-sm flex items-center gap-1">
+              <span className="text-sm sm:text-base">
+                {getSymbolForNakshatra(panchang.nakshatra)}
+              </span>
+              <span className="truncate text-[10px] sm:text-xs">
+                {panchang.nakshatra}
+              </span>
+            </p>
+          </div>
+          <div className="space-y-0.5 sm:space-y-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">पक्ष</p>
+            <p className="font-semibold text-xs sm:text-sm text-foreground truncate">
               {panchang.paksha}
             </p>
           </div>
-          <div className="space-y-1">
-            <p className="text-xs text-muted-foreground">दिन</p>
-            <p className="font-semibold text-sm text-foreground">
+          <div className="space-y-0.5 sm:space-y-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">दिन</p>
+            <p className="font-semibold text-xs sm:text-sm text-foreground truncate">
               {panchang.weekday}
             </p>
           </div>
