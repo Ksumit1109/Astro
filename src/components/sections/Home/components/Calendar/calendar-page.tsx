@@ -161,7 +161,10 @@ export default function CalendarPage() {
               </div>
             )}
             {activeTab === "festivals" && (
-              <FestivalsSection festivals={calendarData.festivals} />
+              <FestivalsSection
+                festivals={calendarData.festivals}
+                nationalHolidays={calendarData.national_holidays}
+              />
             )}
             {activeTab === "auspicious" && (
               <AuspiciousDaysSection

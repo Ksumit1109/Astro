@@ -47,6 +47,7 @@ export interface DailyPanchang {
   nakshatra: string;
   is_special: boolean;
   special_name: string | null;
+  national_holidays: NationalHoliday[];
 }
 
 export interface Festival {
@@ -68,6 +69,14 @@ export interface AuspiciousDay {
   purpose: string;
 }
 
+export interface NationalHoliday {
+  date: string;
+  name: string;
+  description: string;
+  type: string;
+  is_bank_holiday: boolean;
+}
+
 export interface CalendarData {
   year: number;
   month: number;
@@ -77,17 +86,8 @@ export interface CalendarData {
   festivals: Festival[];
   special_days: SpecialDay[];
   auspicious_days: AuspiciousDay[];
+  national_holidays: NationalHoliday[];
   total_days: number;
-}
-
-export interface DailyPanchang {
-  date: string;
-  weekday: string;
-  tithi: string;
-  paksha: string;
-  nakshatra: string;
-  is_special: boolean;
-  special_name: string | null;
 }
 
 export interface CalendarGridProps {
@@ -100,4 +100,5 @@ export interface CalendarGridProps {
 
 export interface FestivalsSectionProps {
   festivals: Festival[];
+  nationalHolidays: NationalHoliday[];
 }

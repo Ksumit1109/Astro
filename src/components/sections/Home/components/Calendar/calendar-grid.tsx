@@ -8,6 +8,7 @@ import {
   getColorForTithi,
 } from "@/lib/calendar-symbols";
 import { CalendarGridProps } from "@/types/types";
+import { Flag } from "lucide-react";
 
 export default function CalendarGrid({ data }: CalendarGridProps) {
   const firstDay = new Date(data.year, data.month - 1, 1).getDay();
@@ -159,6 +160,25 @@ export default function CalendarGrid({ data }: CalendarGridProps) {
                     </div>
                   </div>
                 )}
+
+                {/* National Holidays */}
+                {panchang &&
+                  panchang.national_holidays &&
+                  panchang.national_holidays.length > 0 && (
+                    <div className="mt-auto pt-1 flex flex-col gap-1">
+                      {panchang.national_holidays.map((h, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400"
+                        >
+                          <Flag className="w-3 h-3 flex-shrink-0" />
+                          <span className="text-[10px] font-medium truncate leading-tight">
+                            {h.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
               </div>
             </div>
           );
