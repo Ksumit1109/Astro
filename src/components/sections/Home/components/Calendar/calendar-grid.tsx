@@ -165,16 +165,23 @@ export default function CalendarGrid({ data }: CalendarGridProps) {
                 {panchang &&
                   panchang.national_holidays &&
                   panchang.national_holidays.length > 0 && (
-                    <div className="mt-auto pt-1 flex flex-col gap-1">
+                    <div className="mt-2 pt-2 border-t border-green-500/20">
                       {panchang.national_holidays.map((h, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400"
+                          className="flex items-center gap-2 px-2 py-1.5 md:px-1.5 md:py-1 rounded-md bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 mb-1.5 last:mb-0"
                         >
-                          <Flag className="w-3 h-3 flex-shrink-0" />
-                          <span className="text-[10px] font-medium truncate leading-tight">
-                            {h.name}
-                          </span>
+                          <Flag className="w-3.5 h-3.5 md:w-3 md:h-3 flex-shrink-0 text-green-600 dark:text-green-400" />
+                          <div className="flex-1 min-w-0">
+                            <span className="block text-xs md:text-[10px] font-semibold text-green-900 dark:text-green-200 leading-tight">
+                              {h.name}
+                            </span>
+                            {h.is_bank_holiday && (
+                              <span className="inline-block mt-0.5 text-[9px] md:text-[8px] text-red-600 dark:text-red-400 font-medium">
+                                🏦 Bank Holiday
+                              </span>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>

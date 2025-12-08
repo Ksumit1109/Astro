@@ -50,26 +50,26 @@ export default function FestivalsSection({
   );
 
   const HolidayCard = ({ holiday }: { holiday: NationalHoliday }) => (
-    <div className="p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl border border-green-500/30 bg-gradient-to-br from-green-500/10 to-green-500/5 transition-all hover:shadow-lg hover:scale-105 hover:border-green-500/50">
-      <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-        <div className="p-1.5 sm:p-2 md:p-2.5 rounded-md sm:rounded-lg bg-green-500/20">
-          <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
+    <div className="p-4 sm:p-5 rounded-xl border border-green-200 dark:border-green-800 bg-gradient-to-br from-green-50 to-white dark:from-green-950/20 dark:to-background transition-all hover:shadow-lg hover:border-green-300 dark:hover:border-green-700">
+      <div className="flex items-start gap-3 mb-3">
+        <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30">
+          <Flag className="w-5 h-5 text-green-600 dark:text-green-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-foreground text-xs sm:text-sm truncate">
+          <h3 className="font-bold text-green-900 dark:text-green-100 text-sm sm:text-base leading-tight mb-1">
             {holiday.name}
           </h3>
-          <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 truncate">
-            {holiday.date}
+          <p className="text-xs text-green-700 dark:text-green-400">
+            📅 {holiday.date}
           </p>
         </div>
       </div>
-      <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed line-clamp-3">
+      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
         {holiday.description}
       </p>
       {holiday.is_bank_holiday && (
-        <div className="mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">
-          Bank Holiday
+        <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">
+          🏦 Bank Holiday
         </div>
       )}
     </div>
@@ -97,11 +97,11 @@ export default function FestivalsSection({
 
       {nationalHolidays?.length > 0 && (
         <div>
-          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-            <div className="p-1.5 sm:p-2 md:p-2.5 rounded-md sm:rounded-lg bg-green-500/20">
-              <Flag className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30">
+              <Flag className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" />
             </div>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground font-heading">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground font-heading">
               🇮🇳 National Holidays
             </h2>
           </div>
