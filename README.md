@@ -1,6 +1,6 @@
 # 🔮 Astrology Platform Frontend
 
-A modern, high-performance frontend for the Vedic Astrology platform, built with [Next.js 15](https://nextjs.org/) and [Bun](https://bun.sh/). This application provides a seamless and interactive user experience for exploring horoscopes, generating kundlis, matchmaking, and more.
+A modern https://vedickundli.vercel.app, high-performance frontend for the Vedic Astrology platform, built with [Next.js 16](https://nextjs.org/) and [Bun](https://bun.sh/). This application provides a seamless and interactive user experience for exploring horoscopes, generating kundlis, matchmaking, and more.
 
 ## ✨ Features
 
@@ -12,7 +12,6 @@ A modern, high-performance frontend for the Vedic Astrology platform, built with
 - **🎨 Modern UI**: Beautiful, responsive design using Tailwind CSS v4 and Radix UI.
 - **⚡ High Performance**: Optimized with Bun, Vercel Speed Insights, and lazy loading.
 - **🎭 Smooth Animations**: Interactive elements powered by Framer Motion.
-- **🌓 Dark Mode**: Built-in theme switching support.
 
 ## 🚀 Tech Stack
 
@@ -120,3 +119,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+## Author
+
+Made with ❤️ by Sumit
