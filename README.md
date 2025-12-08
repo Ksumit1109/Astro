@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔮 Astrology Platform Frontend
 
-## Getting Started
+A modern, high-performance frontend for the Vedic Astrology platform, built with [Next.js 15](https://nextjs.org/) and [Bun](https://bun.sh/). This application provides a seamless and interactive user experience for exploring horoscopes, generating kundlis, matchmaking, and more.
 
-First, run the development server:
+## ✨ Features
+
+- **🌟 Daily Rashifal**: AI-powered daily horoscopes with personalized insights.
+- **📊 Kundli Generation**: Detailed birth charts and planetary positions.
+- **💑 Match Making**: Guna Milan and compatibility analysis for marriage.
+- **🔢 Numerology**: Insights based on name and birth date.
+- **📅 Panchang**: Daily Hindu calendar details (Tithi, Nakshatra, Yoga).
+- **🎨 Modern UI**: Beautiful, responsive design using Tailwind CSS v4 and Radix UI.
+- **⚡ High Performance**: Optimized with Bun, Vercel Speed Insights, and lazy loading.
+- **🎭 Smooth Animations**: Interactive elements powered by Framer Motion.
+- **🌓 Dark Mode**: Built-in theme switching support.
+
+## 🚀 Tech Stack
+
+### Core
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Runtime**: [Bun](https://bun.sh/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+### UI & Styling
+
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Components**: [Radix UI](https://www.radix-ui.com/) (Primitives)
+- **Icons**: [Lucide React](https://lucide.dev/) & [Tabler Icons](https://tabler-icons.io/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) & `tw-animate-css`
+- **Utilities**: `clsx`, `tailwind-merge`, `class-variance-authority`
+
+### State & Logic
+
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Markdown Rendering**: [React Markdown](https://github.com/remarkjs/react-markdown)
+- **Graphics**: [OGL](https://github.com/oframe/ogl) (for lightweight WebGL)
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- [Bun](https://bun.sh/) runtime installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd Astrology/frontend_bunJS
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   bun install
+   ```
+
+3. Setup Environment Variables:
+   Create a `.env` file in the root directory (refer to `.env.example` if available) and add necessary API keys and endpoints.
+
+### Development
+
+Run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build & Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To build the application for production:
 
-## Learn More
+```bash
+bun run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+To start the production server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+bun start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Project Structure
 
-## Deploy on Vercel
+```
+frontend_bunJS/
+├── src/
+│   ├── app/              # Next.js App Router pages
+│   ├── components/       # Reusable UI components
+│   │   ├── ui/           # Basic UI elements (Buttons, Inputs, etc.)
+│   │   └── ...
+│   ├── lib/              # Utility functions and helpers
+│   ├── hooks/            # Custom React hooks
+│   ├── store/            # Zustand state stores
+│   └── styles/           # Global styles
+├── public/               # Static assets
+├── .env                  # Environment variables
+├── next.config.ts        # Next.js configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+└── tsconfig.json         # TypeScript configuration
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new).
+
+1. Push your code to a Git repository (GitHub, GitLab, BitBucket).
+2. Import the project into Vercel.
+3. Vercel will detect Next.js and Bun automatically.
+4. Add your environment variables in the Vercel dashboard.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License.
