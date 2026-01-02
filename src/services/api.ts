@@ -35,7 +35,10 @@ export const api = {
   getRashifal: async (data: RashifalRequest) => {
     const response = await fetch(`${API_BASE_URL}/rashifal`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(data),
     });
     if (!response.ok) throw new Error("Failed to fetch rashifal");
